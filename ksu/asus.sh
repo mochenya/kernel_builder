@@ -30,6 +30,8 @@ if [[ -d "$suspatchesdir" ]]; then
   for patch_file in "$suspatchesdir"/*.patch ; do
     git am "$patch_file"
   done
+  echo "CONFIG_KSU=y" >> "${defconfig_file}"
+  echo "CONFIG_KSU_MANUAL_HOOK=y" >> "${defconfig_file}"
   echo "CONFIG_KSU_SUSFS=y" >> "${defconfig_file}"
   echo "CONFIG_KSU_SUSFS_HAS_MAGIC_MOUNT=y" >> "${defconfig_file}"
   echo "CONFIG_KSU_SUSFS_SUS_PATH=y" >> "${defconfig_file}"
