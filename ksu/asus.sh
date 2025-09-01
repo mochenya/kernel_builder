@@ -4,7 +4,6 @@
 
 export maindir="$(pwd)"
 export outside="${maindir}/.."
-export susfsdir="${outside}/susfs4ksu"
 source "${outside}/$1env"
 
 # Import SukiSU-Ultra
@@ -15,9 +14,9 @@ KSU_git_ver=$(cd KernelSU && git rev-list --count HEAD)
 KSU_ver=$(($KSU_git_ver + 10000 + 200))
 
 # Clone susfs4ksu
-git clone --depth=1 https://gitlab.com/simonpunk/susfs4ksu.git "${susfsdir}"
-echo "Cloning: susfs4ksu to ${susfsdir}"
-ls -la "${susfsdir}"
+git clone --depth=1 https://gitlab.com/simonpunk/susfs4ksu.git -b kernel-4.14 ./susfs4ksu
+echo "Cloning: susfs4ksu to susfs4ksu"
+ls -la ./susfs4ksu
 
 patchesdir="$outside/ksu/patches/$(echo $kernel_ver | cut -d. -f1,2)"
 suspatchesdir="$outside/ksu/sus_patches/$(echo $kernel_ver | cut -d. -f1,2)"
@@ -40,10 +39,10 @@ if [[ -d "$suspatchesdir" ]]; then
   for patch_file in "$sukisupatchesdir"/*.patch ; do
     patch -p1 > "$patch_file"
   done
-  cp "${susfsdir}/kernel_patches/fs/*" ./fs/
-  cp "${susfsdir}/kernel_patches/include/linux/*" ./linux/
-  ls -la ./fs/
-  ls -la ./linux/
+  cp ./susfs4ksu/kernel_patches/fs/* ./fs
+  cp ./susfs4ksu/kernel_patches/include/linux/* ./include/linux
+  ls -la ./fs
+  ls -la ./linux
   echo "patching susfs succeeded."
   echo "${defconfig_file}"
   echo "CONFIG_KSU=y" >> "${defconfig_file}"
