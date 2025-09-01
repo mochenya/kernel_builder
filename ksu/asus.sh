@@ -35,7 +35,7 @@ if [[ -d "$suspatchesdir" ]]; then
     patch -p1 > "$patch_file"
   done
   echo "CONFIG_KSU=y" >> "${defconfig_file}"
-  echo "CONFIG_KSU_SUSFS_SUS_SU=n" >> "${defconfig_file}"
+  echo "CONFIG_KSU_SUSFS_SUS_SU=y" >> "${defconfig_file}"
   echo "CONFIG_KSU_MANUAL_HOOK=y" >> "${defconfig_file}"
   echo "CONFIG_KSU_SUSFS=y" >> "${defconfig_file}"
   echo "CONFIG_KSU_SUSFS_HAS_MAGIC_MOUNT=y" >> "${defconfig_file}"
