@@ -34,8 +34,9 @@ if [[ -d "$suspatchesdir" ]]; then
   for patch_file in "$sukisupatchesdir"/*.patch ; do
     patch -p1 > "$patch_file"
   done
+  echo "${defconfig_file}"
   echo "CONFIG_KSU=y" >> "${defconfig_file}"
-  echo "CONFIG_KSU_SUSFS_SUS_SU=y" >> "${defconfig_file}"
+  echo "CONFIG_KSU_SUSFS_SUS_SU=n" >> "${defconfig_file}"
   echo "CONFIG_KSU_MANUAL_HOOK=y" >> "${defconfig_file}"
   echo "CONFIG_KSU_SUSFS=y" >> "${defconfig_file}"
   echo "CONFIG_KSU_SUSFS_HAS_MAGIC_MOUNT=y" >> "${defconfig_file}"
@@ -52,6 +53,7 @@ if [[ -d "$suspatchesdir" ]]; then
   echo "CONFIG_KSU_SUSFS_HIDE_KSU_SUSFS_SYMBOLS=y" >> "${defconfig_file}"
   echo "CONFIG_KSU_SUSFS_SPOOF_CMDLINE_OR_BOOTCONFIG=y" >> "${defconfig_file}"
   echo "CONFIG_KSU_SUSFS_OPEN_REDIRECT=y" >> "${defconfig_file}"
+  cp "${defconfig_file}" defconfig.zip
   echo "patching ksu susfs succeeded."
 else
   echo "patching ksu susfs failed, the kernel version you want to patch doesnt have patches here yet"
