@@ -15,6 +15,7 @@ KSU_ver=$(($KSU_git_ver + 10000 + 200))
 
 patchesdir="$outside/ksu/patches/$(echo $kernel_ver | cut -d. -f1,2)"
 suspatchesdir="$outside/ksu/sus_patches/$(echo $kernel_ver | cut -d. -f1,2)"
+sukisupatchesdir="$outside/ksu/sukisu_patches/$(echo $kernel_ver | cut -d. -f1,2)"
 
 if [[ -d "$patchesdir" ]]; then
   for patch_file in "$patchesdir"/*.patch ; do
@@ -29,6 +30,9 @@ fi
 if [[ -d "$suspatchesdir" ]]; then
   for patch_file in "$suspatchesdir"/*.patch ; do
     git am "$patch_file"
+  done
+  for patch_file in "$sukisupatchesdir"/*.patch ; do
+    patch -p1 > "$patch_file"
   done
   echo "CONFIG_KSU=y" >> "${defconfig_file}"
   echo "CONFIG_KSU_SUSFS_SUS_SU=n" >> "${defconfig_file}"
