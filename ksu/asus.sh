@@ -31,7 +31,7 @@ if [[ -d "$suspatchesdir" ]]; then
     git am "$patch_file"
   done
   echo "patch config: ${defconfig_file}"
-  echo "CONFIG_KSU=y" >> "${defconfig_file}"
+  echo "# CONFIG_KSU is not set" >> "${defconfig_file}"
   echo "# CONFIG_KSU_SUSFS_SUS_SU is not set" >> "${defconfig_file}"
   echo "# CONFIG_KSU_MANUAL_HOOK is not set" >> "${defconfig_file}"
   echo "CONFIG_KSU_SUSFS=y" >> "${defconfig_file}"
