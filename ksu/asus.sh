@@ -7,7 +7,7 @@ export outside="${maindir}/.."
 source "${outside}/$1env"
 
 # Import SukiSU-Ultra
-curl -LSs "https://raw.githubusercontent.com/rsuntk/KernelSU/main/kernel/setup.sh" | bash -s main
+curl -LSs "https://raw.githubusercontent.com/rsuntk/KernelSU/main/kernel/setup.sh" | bash -s susfs-main
 echo "Applying: SukiSU-Ultra"
 git add . && git commit -am "drivers: SukiSU-Ultra"
 KSU_git_ver=$(cd KernelSU && git rev-list --count HEAD)
