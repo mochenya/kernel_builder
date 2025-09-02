@@ -19,9 +19,9 @@ suspatchesdir="$outside/ksu/sus_patches/$(echo $kernel_ver | cut -d. -f1,2)"
 if [[ -d "$patchesdir" ]]; then
   for patch_file in "$patchesdir"/*.patch ; do
     git am "$patch_file"
-    echo "patch config: ${defconfig_file}"
-    echo "CONFIG_KSU=y" >> "${defconfig_file}"
-    echo "CONFIG_KSU_MANUAL_HOOK=y" >> "${defconfig_file}"
+    # echo "patch config: ${defconfig_file}"
+    # echo "CONFIG_KSU=y" >> "${defconfig_file}"
+    # echo "CONFIG_KSU_MANUAL_HOOK=y" >> "${defconfig_file}"
   done
   echo "patching ksu succeeded."
 else
